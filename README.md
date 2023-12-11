@@ -62,6 +62,38 @@ In the main.py script there is an example. You can run it by adding an endpoint 
     }
 ```
 
+## Example Usage of `get_admin_user_ids` in `main.py`
+
+To utilize the `get_admin_user_ids` function from the `endpoints_managment_ui` module in your `main.py`, follow these steps:
+
+### Importing the Module
+
+First, import the `endpoints_managment_ui` module in your `main.py` script:
+
+```python
+import endpoints_managment_ui as ui
+```
+
+### Calling the Function
+
+Once imported, you can call the `get_admin_user_ids` function:
+
+```python
+admin_user_ids = ui.get_admin_user_ids()
+# You can now use the admin_user_ids for your required operations
+```
+
+### Visual Representation
+
+Here is a simple representation of the process:
+
+```ptthon
+main.py
+  |
+  |--- Import ---> endpoints_managment_ui.py
+                        |
+                        |--- Defines ---> get_admin_user_ids()
+
 ## Contributing
 
 Contributions to this project are welcome. Please follow the standard fork-and-pull request workflow.
