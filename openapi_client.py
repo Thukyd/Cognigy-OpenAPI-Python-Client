@@ -1,5 +1,5 @@
 """
-    Module to handle authentication and pagination for OpenAPI requests. (https://api.eu.prod.cai.allianz.net/openapi)
+    Module to handle authentication and pagination for OpenAPI requests.
 
     Manegement UI based requests
     - load_management_ui_credentials: loads and retrieves username and password from a JSON file containing secret information.
@@ -16,6 +16,14 @@ from requests.auth import HTTPBasicAuth
 import json
 
 import logging
+
+def get_size_of_response(response):
+    """
+    Helper function to get the size of a response in bytes, kb and mb.
+    """
+    size_in_bytes = len(response.content)
+    size_in_mb = size_in_bytes / 1024 / 1024 # conversion in mb
+    logging.info(f"Response size: {size_in_mb} MB")
 
 
 def load_management_ui_credentials(path_to_secrets_json):
@@ -76,8 +84,12 @@ def get_request_basic_auth(base_url, endpoint, username, password, params={}):
         params=params,
         auth=HTTPBasicAuth(username, password),
         headers=headers,
-        verify=False
+        verify=True # Enable SSL verification
     )
+
+    # DEBUG: Log the size of the response
+    get_size_of_response(response)
+
     if response.status_code == 200:
         if "items" not in response.json():
             return response.json()
@@ -142,8 +154,12 @@ def get_requests_api_key(base_url, endpoint, api_key, params={}):
         url,
         params=params,
         headers=headers,
-        verify=False
+        verify=True # Enable SSL verification
     )
+
+
+    # DEBUG: Log the size of the response
+    get_size_of_response(response)
 
     if response.status_code == 200:
         # Print the API response data
@@ -160,7 +176,7 @@ def get_requests_api_key(base_url, endpoint, api_key, params={}):
                 url,
                 params=params,
                 headers=headers,
-                verify=False
+                verify=True # Enable SSL verification
             )
             r_content = response.json()
             json_items.extend(r_content['items'])
@@ -206,9 +222,11 @@ def post_requests_api_key(base_url, endpoint, api_key, params={}):
         url,
         params=params,
         headers=headers,
-        verify=False
+        verify=True # Enable SSL verification
     )
 
+    # DEBUG: Log the size of the response
+    get_size_of_response(response)
 
     if response.status_code == 204:
         logging.info(f"Succesful post request: {response.status_code}")    
