@@ -5,7 +5,7 @@ from datetime import datetime, timedelta
 """
     Module in usage
 """
-# Module to handle  authentication and pagination for OpenAPI requests. (https://api.eu.prod.cai.allianz.net/openapi)
+# Module to handle  authentication and pagination for OpenAPI requests. (https://api.your-url/openapi)
 import openapi_client
 # Module to make request which require an API-Key
 import endpoints_api_key as via_api_key 

@@ -51,7 +51,7 @@ def load_management_ui_credentials(path_to_secrets_json):
 
 def get_request_basic_auth(base_url, endpoint, username, password, params={}):
     """
-        Helper Functionality for management ui queries Cogniyion OpenAPI (https://api.eu.prod.cai.allianz.net/openapi)
+        Helper Functionality for management ui queries Cogniyion OpenAPI (https://api.your-url/openapi)
 
         Make GET queries to OpenAPI endpoints based on a base_url, and username and password.
         It handles a dict of parameters to add to the query. This function follows pagination until there
