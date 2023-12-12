@@ -1,8 +1,8 @@
 ###########################################################################################
-### B) API requests via API Key Authentication (https://api.eu.prod.cai.allianz.net/new) ###
+### B) API requests via API Key Authentication  ###
 
 """
-    Module to make APIrequests (https://api.eu.prod.cai.allianz.net/openapi)
+    Module to make APIrequests
 
     Uses "cognigy_open_api.py" to handle authentication and pagination for OpenAPI requests. 
 

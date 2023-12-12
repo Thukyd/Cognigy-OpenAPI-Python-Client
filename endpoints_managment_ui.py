@@ -1,7 +1,7 @@
 ###########################################################################################
-### API requests via HTTP Basic Authentication (https://api.eu.prod.cai.allianz.net)    ###
+### API requests via HTTP Basic Authentication (https://api.your-url/openapi)    ###
 """
-    Module to make Mangement UI requests (https://api.eu.prod.cai.allianz.net/openapi)
+    Module to make Mangement UI requests to the Cognitive OpenAPI (https://api.your-url/openapi).
 
     Uses "cognigy_open_api.py" to handle authentication and pagination for OpenAPI requests. 
 
