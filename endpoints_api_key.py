@@ -87,3 +87,40 @@ def post_deprecate_password(base_url, api_key, user_id):
 
     # Return if password was deprecated
     return password_deprecated_bool
+
+def get_user_by_id(base_url, api_key, user_id):
+    response = openapi_client.get_requests_api_key(
+            base_url,
+            f"users/{user_id}",
+            api_key, {}
+        )
+    return response
+
+def delete_project_by_id(base_url, api_key, project_id):
+    """
+    Deletes a project by its project ID.
+
+    Args:
+        base_url (str): The base URL of the API.
+        api_key (str): The API key for authentication.
+        project_id (str): The ID of the project to be deleted.
+
+    Returns:
+        bool: True if the project was successfully deleted, False otherwise.
+    
+    Raises:
+        Exception: If the deletion fails or the API returns an error.
+    """
+
+    # Define the endpoint for deleting a project by ID
+    delete_project_endpoint = f"projects/{project_id}"
+
+    # Make a DELETE request to delete the project
+    project_deleted_bool = openapi_client.delete_requests_api_key(
+        base_url=base_url,
+        endpoint=delete_project_endpoint,
+        api_key=api_key
+    )
+
+    # Return if the project was successfully deleted
+    return project_deleted_bool

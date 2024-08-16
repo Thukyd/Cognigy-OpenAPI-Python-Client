@@ -189,6 +189,7 @@ def get_requests_api_key(base_url, endpoint, api_key, params={}):
         # Print the API error message
         raise Exception(f"Error retrieving data from {url}. Error: {response.text}")
 
+
 def post_requests_api_key(base_url, endpoint, api_key, params={}):
     """
         Make queries to OpenAPI endpoints based on a base_url, and api_key and different parameters.
@@ -210,7 +211,7 @@ def post_requests_api_key(base_url, endpoint, api_key, params={}):
 
     params = {
         **{
-            # 'ignoreOwnership': 'false',
+            'ignoreOwnership': 'true',
             'api_key': api_key,
         },
         **params
@@ -234,4 +235,59 @@ def post_requests_api_key(base_url, endpoint, api_key, params={}):
     else:
         # Print the API error message
         raise Exception(f"Error retrieving data from {url}. Error: {response.text}")
-        return F
+        return False
+
+def delete_requests_api_key(base_url, endpoint, api_key, params={}):
+    """
+    Make DELETE requests to an API endpoint using a base URL, endpoint, API key, and parameters.
+
+    Args:
+        base_url (str): The base URL where the API is hosted.
+        endpoint (str): The specific API endpoint to query.
+        api_key (str): The API key used for authentication.
+        params (dict): A dictionary of additional parameters to include in the request.
+
+    Returns:
+        dict: JSON response from the request, if applicable.
+    
+    Raises:
+        Exception: If the request fails or the API returns an error.
+    """
+
+    headers = {
+        'Accept': 'application/json',
+        'X-API-Key': api_key
+    }
+
+    # Combine provided parameters with default ones
+    params = {
+        'ignoreOwnership': 'true',
+        **params
+    }
+
+    url = f'{base_url}/{endpoint}'
+
+    try:
+        response = requests.delete(
+            url,
+            params=params,  # DELETE requests often send parameters in the URL
+            headers=headers,
+            verify=True  # SSL verification is enabled
+        )
+        
+        # Log the size of the response for debugging
+        get_size_of_response(response)
+
+        # Check for successful status code
+        if response.status_code in [200, 204]:
+            logging.info(f"Successful delete request: {response.status_code}")
+            return True
+        
+        # Attempt to return JSON response
+        response.raise_for_status()
+        return response.json()
+
+    except requests.exceptions.RequestException as e:
+        logging.error(f"Error during API request to {url}: {e}")
+        raise Exception(f"Error retrieving data from {url}. Error: {e}")
+
