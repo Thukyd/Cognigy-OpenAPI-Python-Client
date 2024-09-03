@@ -7,16 +7,16 @@ The Client is designed to be the base for interactions with the Cognigy OpenAPI.
 There are some example endpoints included. You can extend this by check the OpenAPI documentation `https://api-trial.cognigy.ai/openapi#` and adding the endpoints you need.
 
 ## Features
-
+    
 - **API Key Authentication:** Handles specialized API requests using an API key.
 - **HTTP Basic Authentication:** Manages API requests through HTTP Basic Authentication.
 - **Different Endpoints:** Provides access to various endpoints, including user management and audit event tracking.
 
 ## Modules
 
-1. `openapi_client.py`: Responsible for authentication and pagination related to OpenAPI requests.
-2. `endpoints_api_key.py`: Manages API requests via API Key Authentication.
-3. `endpoints_managment_ui.py`: Handles API requests via HTTP Basic Authentication.
+1. `openapi_client.py`: Core authentication and pagination logic
+2. `endpoints_api_key.py`: API Key authenticated requests
+3. `endpoints_managment_ui.py`: Basic Auth requests
 
 ## Dependencies
 

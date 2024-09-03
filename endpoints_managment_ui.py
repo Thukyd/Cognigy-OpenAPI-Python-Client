@@ -1,16 +1,9 @@
-###########################################################################################
-### API requests via HTTP Basic Authentication (https://api.your-url/openapi)    ###
 """
     Module to make Mangement UI requests to the Cognitive OpenAPI (https://api.your-url/openapi).
 
     Uses "cognigy_open_api.py" to handle authentication and pagination for OpenAPI requests. 
 
-    Contains following endpoints:
-    - get_user_list: retrieves a list of all users.
-    - get_user_details: retrieves details of a specific user.
-    - get_admin_user_ids: retrieves a list of user details for users with the 'admin' role of all organisations.
-    - get_organisations: retrieves a list of all organisations.
-    - create_temporary_api_key: creates a new ApiKey with admin permissions for a specific organisation.
+    This doesn't cover all possible request of Cognigy but it's fairly easy to add new ones. 
 
 """
 

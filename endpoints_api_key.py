@@ -1,15 +1,9 @@
-###########################################################################################
-### B) API requests via API Key Authentication  ###
-
 """
-    Module to make APIrequests
+    Module to requests via API Key Authentication 
 
     Uses "cognigy_open_api.py" to handle authentication and pagination for OpenAPI requests. 
 
-    Contains following endpoints: 
-    - get_audit_events: retrieves a list of all audit events.
-    - post_deprecate_password: deprecates the password of a user.
-
+    This doesn't cover all possible request of Cognigy but it's fairly easy to add new ones. 
 """
 
 import warnings 
