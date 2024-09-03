@@ -162,7 +162,7 @@ def get_admin_user_ids(url, username, password):
     # Return the list of details for users with the 'admin' role
     return admin_user_ids
 
-def get_organisations(url, username, password):
+def get_all_organisations(url, username, password):
     """
     get-/management/v2.0/organisations
 
@@ -244,3 +244,46 @@ def create_temporary_api_key(base_url, username, password, organisation_id):
         response.raise_for_status()
 
 
+def update_organization(base_url, username, password, organisation_id, update_data):
+    """
+    /management/v2.0/organisations/{organisationId}
+    Updates a specific organisation partially.
+
+    Args:
+    base_url (str): The base URL of the API.
+    username (str): The username for authentication.
+    password (str): The password for authentication.
+    organisation_id (str): The ID of the organization to update.
+    update_data (dict): A dictionary containing the fields to update.
+
+    Returns:
+    dict: A dictionary containing the updated organization information if the request is successful.
+
+    Raises:
+    Exception: Raises an exception if the HTTP request fails.
+
+    Example:
+    update_info = {
+        "name": "Updated Org Name",
+        "disabled": False,
+        # Add other fields as needed
+    }
+    result = update_organization("https://api.example.com", "my_username", "my_password", "org123", update_info)
+    if result:
+        print("Organization updated successfully:", result)
+    else:
+        print("Failed to update organization.")
+    """
+    # Define the endpoint for updating the organization
+    update_org_endpoint = f"management/v2.0/organisations/{organisation_id}"
+
+    # Make a PATCH request to update the organization
+    updated_org = openapi_client.patch_request_basic_auth(
+        base_url=base_url,
+        endpoint=update_org_endpoint,
+        username=username,
+        password=password,
+        json_payload=update_data
+    )
+
+    return updated_org
